@@ -51,7 +51,6 @@ describe('lazy-bouncer routes', () => {
 
   it('returns the current user', async () => {
     const [agent, user] = await registerAndLogin();
-    console.log('user is here', user);
     const me = await agent.get('/api/v1/users/me');
 
     expect(me.body).toEqual({
@@ -83,6 +82,7 @@ describe('lazy-bouncer routes', () => {
   it('should return a list of users if signed in as admin', async () => {
     const [agent, user] = await registerAndLogin({ email: 'admin' });
     const res = await agent.get('/api/v1/users');
+    
 
     expect(res.body).toEqual([{ ...user }]);
   });
